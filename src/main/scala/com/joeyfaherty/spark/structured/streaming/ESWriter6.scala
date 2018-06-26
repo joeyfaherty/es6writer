@@ -12,6 +12,7 @@ object ESWriter6 {
                       age: Int,
                       isAdult: Boolean,
                       nowEpoch: Long)
+  
 
   def main(args: Array[String]): Unit = {
     val spark = SparkSession
