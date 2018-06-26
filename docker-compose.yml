@@ -1,0 +1,29 @@
+---
+version: '3'
+
+services:
+
+  elasticsearch-joey:
+      hostname: elasticsearch-joey
+      container_name: elasticsearch-joey
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+      environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+        nofile:
+          soft: 65536
+          hard: 65536
+      cap_add:
+        - IPC_LOCK
+      ports:
+        - 9200:9200
+        - 9300:9300
+
+networks:
+  default:
+    driver: bridge
